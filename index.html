@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 Ders Programı Planlayıcı</title>
+    <title>2025 Ders Planlayıcı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #202836;
-            --card-color: #1e293b;
-            --text-color: #fffff;
-            --primary-color: #7c3aed;
-            --secondary-color: #0ea5e9;
-            --border-color: #334155;
-            --hover-color: #334155;
-            --input-bg: #334155;
-            --danger-color: #ef4444;
+            --bg-color: #36393f;
+            --card-color: #2f3136;
+            --text-color: #dcddde;
+            --primary-color: #5865f2;
+            --secondary-color: #3ba55c;
+            --border-color: #202225;
+            --hover-color: #40444b;
+            --input-bg: #40444b;
+            --danger-color: #ed4245;
+            --textbox-bg: #383a40;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
@@ -29,132 +31,141 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: var(--primary-color);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         
         h1 {
             text-align: center;
             color: var(--text-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
             font-weight: 700;
-            font-size: 2rem;
         }
         
         .date-range {
             text-align: center;
-            margin-bottom: 2rem;
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-            font-weight: 500;
+            margin-bottom: 25px;
+            color: #b9bbbe;
+            font-size: 1.1em;
         }
         
         .calendar {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
         }
         
         .day {
             border: 1px solid var(--border-color);
-            padding: 1.25rem;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 8px;
             background-color: var(--card-color);
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .day:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border-color: var(--primary-color);
         }
         
         .day-header {
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-color);
         }
         
         .date {
-            font-size: 0.85rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
+            font-size: 0.85em;
+            color: #b9bbbe;
+            margin-bottom: 10px;
         }
         
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 0.75rem;
+        .lesson-list {
+            margin-top: 10px;
+        }
+        
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            background-color: var(--textbox-bg);
+        }
+        
+        .lesson-item:hover {
+            background-color: var(--hover-color);
+        }
+        
+        .lesson-item.completed {
+            opacity: 0.7;
+        }
+        
+        .lesson-item.completed .lesson-name {
+            text-decoration: line-through;
+            color: #b9bbbe;
+        }
+        
+        .lesson-name {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+        
+        .add-lesson-container {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        #newLessonInput {
+            flex-grow: 1;
+            padding: 10px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            resize: vertical;
-            font-family: inherit;
+            border-radius: 4px;
             background-color: var(--input-bg);
             color: var(--text-color);
-            transition: all 0.2s;
-            flex-grow: 1;
-            font-size: 0.95rem;
         }
         
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+        #addLessonBtn {
+            margin-left: 10px;
+            padding: 0 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
         
         .controls {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 2rem;
+            margin-bottom: 25px;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 15px;
         }
         
         .btn-group {
             display: flex;
-            gap: 0.75rem;
+            gap: 10px;
             flex-wrap: wrap;
         }
         
         button {
-            padding: 0.75rem 1.25rem;
+            padding: 10px 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 500;
             transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-        }
-        
-        button:active {
-            transform: translateY(0);
         }
         
         footer {
-            margin-top: 3rem;
+            margin-top: 40px;
             text-align: center;
-            padding: 1.5rem;
+            padding: 20px;
             border-top: 1px solid var(--border-color);
-            color: #94a3b8;
-            font-size: 0.9rem;
+            color: #b9bbbe;
+            font-size: 0.9em;
         }
         
         #saveBtn {
@@ -162,8 +173,9 @@
             color: white;
         }
         
-        #saveBtn:hover {
-            background-color: #6d28d9;
+        #addToAllBtn {
+            background-color: #faa61a;
+            color: white;
         }
         
         #downloadBtn {
@@ -171,17 +183,9 @@
             color: white;
         }
         
-        #downloadBtn:hover {
-            background-color: #0284c7;
-        }
-        
         #uploadBtn {
-            background-color: #f59e0b;
+            background-color: #eb459e;
             color: white;
-        }
-        
-        #uploadBtn:hover {
-            background-color: #d97706;
         }
         
         #clearBtn {
@@ -189,41 +193,21 @@
             color: white;
         }
         
-        #clearBtn:hover {
-            background-color: #dc2626;
-        }
-        
         #fileInput {
             display: none;
         }
         
-        .day-number {
-            background-color: var(--primary-color);
-            color: white;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
         .notification {
             position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
+            bottom: 20px;
+            right: 20px;
             background-color: var(--primary-color);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
+            padding: 12px 20px;
+            border-radius: 4px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 1000;
             animation: fadeIn 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
         
         @keyframes fadeIn {
@@ -237,10 +221,6 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 1.25rem;
-            }
-            
             .calendar {
                 grid-template-columns: 1fr;
             }
@@ -252,29 +232,6 @@
             .btn-group {
                 width: 100%;
             }
-            
-            button {
-                flex-grow: 1;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 12px;
-            }
-            
-            .day {
-                padding: 1rem;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-            }
         }
     </style>
 </head>
@@ -284,45 +241,20 @@
         <div class="date-range">21 Temmuz - 17 Ağustos 2025</div>
         
         <div class="controls">
-            <button id="saveBtn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                    <polyline points="7 3 7 8 15 8"></polyline>
-                </svg>
-                Kaydet
-            </button>
+            <button id="saveBtn">Kaydet</button>
             
             <div class="btn-group">
-                <button id="clearBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                    </svg>
-                    Temizle
-                </button>
-                
-                <button id="downloadBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    İndir
-                </button>
-                
-                <button id="uploadBtn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    Yükle
-                </button>
+                <button id="clearBtn">Temizle</button>
+                <button id="addToAllBtn">Tüm Günlere Ekle</button>
+                <button id="downloadBtn">İndir</button>
+                <button id="uploadBtn">Yükle</button>
                 <input type="file" id="fileInput" accept=".json">
             </div>
+        </div>
+        
+        <div class="add-lesson-container">
+            <input type="text" id="newLessonInput" placeholder="Ders adı yazın...">
+            <button id="addLessonBtn">Ekle</button>
         </div>
         
         <div class="calendar" id="calendar">
@@ -337,17 +269,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Date range: July 21 to August 17, 2025
-            const startDate = new Date(2025, 6, 21); // Month is 0-indexed (6 = July)
-            const endDate = new Date(2025, 7, 17); // 7 = August
+            const startDate = new Date(2025, 6, 21);
+            const endDate = new Date(2025, 7, 17);
             
             const calendarEl = document.getElementById('calendar');
             const saveBtn = document.getElementById('saveBtn');
             const clearBtn = document.getElementById('clearBtn');
+            const addToAllBtn = document.getElementById('addToAllBtn');
             const downloadBtn = document.getElementById('downloadBtn');
             const uploadBtn = document.getElementById('uploadBtn');
             const fileInput = document.getElementById('fileInput');
+            const newLessonInput = document.getElementById('newLessonInput');
+            const addLessonBtn = document.getElementById('addLessonBtn');
             
             let scheduleData = {};
+            let selectedDay = null;
             
             // Initialize calendar
             function initCalendar() {
@@ -361,17 +297,20 @@
                     const dayName = currentDate.toLocaleDateString('tr-TR', { weekday: 'long' });
                     const dateStr = currentDate.toLocaleDateString('tr-TR');
                     const dateKey = currentDate.toISOString().split('T')[0];
-                    const dayNumber = currentDate.getDate();
                     
                     dayEl.innerHTML = `
                         <div class="day-header">
                             <span>${dayName}</span>
-                            <span class="day-number">${dayNumber}</span>
                         </div>
                         <div class="date">${dateStr}</div>
-                        <textarea data-date="${dateKey}" 
-                                  placeholder="Bu günkü dersleri yazın..."></textarea>
+                        <div class="lesson-list" data-date="${dateKey}"></div>
                     `;
+                    
+                    dayEl.addEventListener('click', function() {
+                        selectedDay = dateKey;
+                        document.querySelectorAll('.day').forEach(d => d.style.border = '1px solid var(--border-color)');
+                        this.style.border = '1px solid var(--primary-color)';
+                    });
                     
                     calendarEl.appendChild(dayEl);
                     
@@ -381,29 +320,101 @@
                 
                 // Load saved data if available
                 loadSchedule();
-                
-                // Add event listeners to all textareas
-                document.querySelectorAll('textarea').forEach(textarea => {
-                    textarea.addEventListener('input', function() {
-                        const date = this.getAttribute('data-date');
-                        scheduleData[date] = this.value;
-                    });
-                });
             }
             
-            // Save all data to scheduleData object
-            function saveAllData() {
-                const textareas = document.querySelectorAll('textarea');
-                textareas.forEach(textarea => {
-                    const date = textarea.getAttribute('data-date');
-                    scheduleData[date] = textarea.value;
-                });
+            // Add lesson to selected day
+            function addLesson() {
+                if (!selectedDay) {
+                    showNotification('Lütfen önce bir gün seçin!', true);
+                    return;
+                }
                 
-                // Save to localStorage
+                const lessonName = newLessonInput.value.trim();
+                if (!lessonName) return;
+                
+                const lesson = {
+                    name: lessonName,
+                    completed: false
+                };
+                
+                if (!scheduleData[selectedDay]) {
+                    scheduleData[selectedDay] = [];
+                }
+                
+                scheduleData[selectedDay].push(lesson);
+                renderLessons(selectedDay);
+                newLessonInput.value = '';
+                saveData();
+            }
+            
+            // Add lesson to all days
+            function addLessonToAll() {
+                const lessonName = newLessonInput.value.trim();
+                if (!lessonName) return;
+                
+                const currentDate = new Date(startDate);
+                while (currentDate <= endDate) {
+                    const dateKey = currentDate.toISOString().split('T')[0];
+                    const lesson = {
+                        name: lessonName,
+                        completed: false
+                    };
+                    
+                    if (!scheduleData[dateKey]) {
+                        scheduleData[dateKey] = [];
+                    }
+                    
+                    scheduleData[dateKey].push(lesson);
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+                
+                renderAllLessons();
+                newLessonInput.value = '';
+                saveData();
+                showNotification('Ders tüm günlere eklendi!');
+            }
+            
+            // Render lessons for a specific day
+            function renderLessons(date) {
+                const lessonList = document.querySelector(`.lesson-list[data-date="${date}"]`);
+                if (!lessonList) return;
+                
+                lessonList.innerHTML = '';
+                
+                if (scheduleData[date]) {
+                    scheduleData[date].forEach((lesson, index) => {
+                        const lessonItem = document.createElement('div');
+                        lessonItem.className = `lesson-item ${lesson.completed ? 'completed' : ''}`;
+                        lessonItem.innerHTML = `
+                            <input type="checkbox" ${lesson.completed ? 'checked' : ''}>
+                            <span class="lesson-name">${lesson.name}</span>
+                        `;
+                        
+                        const checkbox = lessonItem.querySelector('input');
+                        checkbox.addEventListener('change', function() {
+                            scheduleData[date][index].completed = this.checked;
+                            lessonItem.classList.toggle('completed', this.checked);
+                            saveData();
+                        });
+                        
+                        lessonList.appendChild(lessonItem);
+                    });
+                }
+            }
+            
+            // Render lessons for all days
+            function renderAllLessons() {
+                const currentDate = new Date(startDate);
+                while (currentDate <= endDate) {
+                    const dateKey = currentDate.toISOString().split('T')[0];
+                    renderLessons(dateKey);
+                    currentDate.setDate(currentDate.getDate() + 1);
+                }
+            }
+            
+            // Save data to localStorage
+            function saveData() {
                 localStorage.setItem('dersProgrami2025', JSON.stringify(scheduleData));
-                
-                // Show notification
-                showNotification('Ders programı kaydedildi!');
             }
             
             // Load schedule from localStorage
@@ -411,35 +422,22 @@
                 const savedData = localStorage.getItem('dersProgrami2025');
                 if (savedData) {
                     scheduleData = JSON.parse(savedData);
-                    
-                    const textareas = document.querySelectorAll('textarea');
-                    textareas.forEach(textarea => {
-                        const date = textarea.getAttribute('data-date');
-                        if (scheduleData[date]) {
-                            textarea.value = scheduleData[date];
-                        }
-                    });
+                    renderAllLessons();
                 }
             }
             
-            // Clear all textareas
+            // Clear all lessons
             function clearAll() {
-                if (confirm('Tüm dersleri silmek istediğinize emin misiniz? Bu işlem geri alınamaz.')) {
-                    const textareas = document.querySelectorAll('textarea');
-                    textareas.forEach(textarea => {
-                        textarea.value = '';
-                    });
-                    
+                if (confirm('Tüm dersleri silmek istediğinize emin misiniz?')) {
                     scheduleData = {};
                     localStorage.removeItem('dersProgrami2025');
+                    renderAllLessons();
                     showNotification('Tüm dersler temizlendi!');
                 }
             }
             
             // Download schedule as JSON file
             function downloadSchedule() {
-                saveAllData(); // Update scheduleData before download
-                
                 const dataStr = JSON.stringify(scheduleData, null, 2);
                 const dataBlob = new Blob([dataStr], { type: 'application/json' });
                 const url = URL.createObjectURL(dataBlob);
@@ -463,52 +461,25 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     try {
-                        const uploadedData = JSON.parse(e.target.result);
-                        scheduleData = uploadedData;
-                        
-                        // Update textareas with uploaded data
-                        const textareas = document.querySelectorAll('textarea');
-                        textareas.forEach(textarea => {
-                            const date = textarea.getAttribute('data-date');
-                            if (scheduleData[date]) {
-                                textarea.value = scheduleData[date];
-                            } else {
-                                textarea.value = '';
-                            }
-                        });
-                        
-                        // Save to localStorage
-                        localStorage.setItem('dersProgrami2025', JSON.stringify(scheduleData));
-                        
+                        scheduleData = JSON.parse(e.target.result);
+                        saveData();
+                        renderAllLessons();
                         showNotification('Dosya başarıyla yüklendi!');
                     } catch (error) {
-                        showNotification('Hata: Geçersiz JSON dosyası!', true);
+                        showNotification('Geçersiz JSON dosyası!', true);
                     }
                 };
                 reader.readAsText(file);
                 
-                // Reset file input
                 event.target.value = '';
             }
             
             // Show notification
             function showNotification(message, isError = false) {
-                const existingNotification = document.querySelector('.notification');
-                if (existingNotification) {
-                    existingNotification.remove();
-                }
-                
                 const notification = document.createElement('div');
                 notification.className = 'notification';
                 notification.style.backgroundColor = isError ? 'var(--danger-color)' : 'var(--primary-color)';
-                
-                notification.innerHTML = `
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    ${message}
-                `;
+                notification.textContent = message;
                 
                 document.body.appendChild(notification);
                 
@@ -521,14 +492,27 @@
             }
             
             // Event listeners
-            saveBtn.addEventListener('click', saveAllData);
+            saveBtn.addEventListener('click', saveData);
             clearBtn.addEventListener('click', clearAll);
+            addToAllBtn.addEventListener('click', addLessonToAll);
             downloadBtn.addEventListener('click', downloadSchedule);
             uploadBtn.addEventListener('click', () => fileInput.click());
             fileInput.addEventListener('change', handleFileUpload);
+            addLessonBtn.addEventListener('click', addLesson);
+            newLessonInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') addLesson();
+            });
             
             // Initialize the calendar
             initCalendar();
+            
+            // Select first day by default
+            setTimeout(() => {
+                const firstDay = document.querySelector('.day');
+                if (firstDay) {
+                    firstDay.click();
+                }
+            }, 100);
         });
     </script>
 </body>
